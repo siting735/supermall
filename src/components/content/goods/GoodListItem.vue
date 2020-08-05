@@ -1,6 +1,6 @@
 <template>
 	<div class="goods-item">
-		<img :src="goodsItem.show.img"/>
+		<img :src="getImg" @load="imgLoad" @click="itemClick"/>
 		<div class="goods-info">
 			<p>{{goodsItem.title}}</p>
 			<span class="price">{{goodsItem.price}}</span>
@@ -16,12 +16,30 @@
 			goodsItem: {
 				type: Object
 			}
-		}
-		
+		},
+    methods:{
+      imgLoad(){
+        if(this.$route.path.indexOf('/home')){
+          this.$bus.$emit('imgLoadFinish')
+        }
+        else if(this.$route.path.indexOf('/detail')){
+          this.$bus.$emit('detailimgLoadFinish')
+        }
+      },
+      itemClick(){
+        this.$router.push('./detail/' + this.goodsItem.iid)
+      }
+    },
+    computed:{
+      getImg() {
+        return this.goodsItem.img || this.goodsItem.image || this.goodsItem.show.img
+      }
+    }
+
 	}
 </script>
 
-<style>
+<style scoped>
 	.goods-item {
 	  padding-bottom: 40px;
 	  position: relative;
@@ -32,7 +50,7 @@
 	  width: 100%;
 	  border-radius: 5px;
 	}
-	
+
 	.goods-info {
 	  font-size: 12px;
 	  position: absolute;
@@ -42,23 +60,23 @@
 	  overflow: hidden;
 	  text-align: center;
 	}
-	
+
 	.goods-info p {
 	  overflow: hidden;
 	  text-overflow: ellipsis;
 	  white-space: nowrap;
 	  margin-bottom: 3px;
 	}
-	
+
 	.goods-info .price {
 	  color: var(--color-high-text);
 	  margin-right: 20px;
 	}
-	
+
 	.goods-info .collect {
 	  position: relative;
 	}
-	
+
 	.goods-info .collect::before {
 	  content: '';
 	  position: absolute;

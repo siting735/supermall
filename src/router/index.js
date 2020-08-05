@@ -6,6 +6,7 @@ const Category = () => import('../views/category/Category')
 const Cart = () => import('../views/cart/Cart')
 const Profile = () => import('../views/profile/Profile')
 const User = () => import('../views/user/User')
+const Detail = () => import('../views/detail/Detail')
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,10 @@ Vue.use(VueRouter)
   {
   	path:'/user',
   	component:User
+  },
+  {
+    path:'/detail/:iid',
+    component:Detail
   }
 ]
 

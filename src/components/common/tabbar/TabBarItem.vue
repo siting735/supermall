@@ -5,7 +5,7 @@
 		<div v-else>
 			<slot name="item-icon-active"></slot>
 		</div>
-		
+
 		<div :style="activeStyle">
 			<slot name="item-text"></slot>
 		</div>
@@ -37,7 +37,6 @@
 		},
 		methods:{
 			btnClick(){
-				console.log('btnClick')
 				this.$router.replace(this.path)
 			}
 		}
@@ -51,7 +50,7 @@
 		height: 49px;
 		font-size: 14px;
 	}
-	
+
 	.tab-bar-item img {
 		width: 24px;
 		height: 24px;

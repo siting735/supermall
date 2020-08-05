@@ -32,7 +32,7 @@
 
 <script>
 	import BScroll from 'better-scroll'
-	
+
 	export default {
 		name:'Category',
 		data() {
@@ -57,11 +57,11 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	.wrapper {
 		height: 150px;
 		background-color: red;
-		
+
 		overflow: hidden;
 		/* overflow-y: scroll; */
 	}

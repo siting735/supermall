@@ -11,7 +11,7 @@
       <detail-recommend-info ref="recommend" :recommend-list="recommendList"/>
     </scroll>
     <back-top  @click.native="backTop" v-show="isShowBackTop"/>
-    <detail-bottom-bar/>
+    <detail-bottom-bar @addToCart="addToCart"/>
   </div>
 </template>
 
@@ -30,6 +30,7 @@
   import {debounce} from "@/common/utils";
 
   import {backTopMixin} from '@/common/mixin'
+  import {mapActions} from 'vuex'
 
   import Scroll from '@/components/common/scroll/Scroll.vue'
 
@@ -110,6 +111,7 @@
         })
       },
       methods: {
+        ...mapActions(['addCart']),
         imageLoad() {
           this.$refs.scroll.refresh()
           this.getThemeTopYs()
@@ -136,6 +138,23 @@
           //   }
           // }
 
+        },
+        addToCart(){
+          //1、获取购物车需要展示的信息
+          const product = {}
+          product.image = this.topImg[0]
+          product.title = this.goods.title
+          product.desc = this.goods.desc
+          product.price = this.goods.nowPrice
+          product.iid = this.iid
+
+        //  2、将数据放入到vuex中
+        //   this.$store.commit('addCart', product).then(res => {
+        //     console.log(res);
+        //   })
+          this.addCart(product).then(res => {
+            this.$toast.show(res)
+          })
         }
       },
     }

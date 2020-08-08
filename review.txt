@@ -1,0 +1,80 @@
+1、过滤属性
+<p>{{message|capitalize}}</p>
+filters:{
+    capitalize:function(value){
+        if(!value) return '';
+        value=value.toString();
+        return value.charAt(0).toUpperCase()+value.slice(1);
+    }
+}
+
+2、监听属性：watch数据，监听数据改变，做出相应反应
+watch:{
+    //要监听的属性：函数（新值，旧值）
+    kilometers:function(val){
+        this.kilometers=val;
+        this.meters=val*1000;
+    }
+}
+
+3、双向绑定v-model
+
+4、组件之间的通信
+  （1）父传子：子组件有props数据，父组件绑定数据传输
+  （2）子传符：子组件使用this.$emit('函数名', 参数);函数，发送给父组件，父组件有相应的函数调用，接收数据
+  （3）父访问子：子组件有ref属性，父组件使用this.$refs.子组件ref名，可以获得子组件的所有东西
+  （4）子访问父：子组件使用this.$parent，可以获得父组件的所有东西
+
+5、插件axios实现网络数据请求（采用封装思想）
+（1）request.js 负责导入axios，做基础配置
+（2）其他的js导入reques.js做不同模块的数据具体请求
+
+6、插件router实现组件以地址的形式呈现
+插件使用方式：
+·导入vue-router import Router from 'vue-router'
+·注册 Vue.use(Router)
+·实例化一个对象 const router= new Router({}) //里面添加参数
+
+（1）懒加载：只有在用到的时候才加载
+
+7、scr目录下的main.js收录项目里面的所有index.js文件
+
+8、vuex插件：公共保存数据，导出变量用store
+模块化开发思想是将以下的内容分成对应的js文件
+（1）state：保存公用数据
+（2）mutations：更改数据（一般不对外公开，如果想要操作数据：通过actions中的函数，然actions的函数调用mutations）
+（3）getters：获取数据
+（4）actions：处理业务
+
+9、插槽slot：相当于接口，开放位置具体插入
+
+10、主要的思想就：封装、模块化开发
+（1）代码的复用性会很高，结构清晰
+（2）逻辑清晰
+
+完结-撒花
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
